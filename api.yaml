@@ -327,3 +327,73 @@ paths:
                 properties:
                   error:
                     type: string
+  /login:
+    post:
+      summary: Авторизация пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: Логин пользователя
+                password:
+                  type: string
+                  description: Пароль пользователя
+      responses:
+        '200':
+          description: Пользователь успешно найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Токен для пользователя
+        '400':
+          description: Некорректные данные
+        '500':
+          description: Ошибка сервера
+  /register:
+    post:
+      summary: Регистрация пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: Логин пользователя
+                password:
+                  type: string
+                  description: Пароль пользователя
+                role:
+                  type: string
+                  description: Роль пользователя
+                  enum:
+                    - User
+                    - Admin
+                  default: User
+      responses:
+        '201':
+          description: Пользователь успешно создан
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Токен для пользователя
+        '400':
+          description: Некорректные данные
+        '500':
+          description: Ошибка сервера
+
