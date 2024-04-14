@@ -18,11 +18,6 @@ import (
 	"time"
 )
 
-// docker network create avito_network
-// docker build -t my_app .
-// docker run --network avito_network -d --name avito_container -p 8080:8080 my_app
-// docker compose up
-
 func main() {
 	log.SetLevel(log.DebugLevel)
 
