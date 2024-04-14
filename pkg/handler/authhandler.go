@@ -80,7 +80,7 @@ func (handler *AuthHandler) SignIn(w http.ResponseWriter, r *http.Request) {
 
 	role, err := handler.UsersRepo.SignIn(r.Context(), u.Login, u.Password)
 	if err != nil {
-		if errors.As(err, &sql.ErrNoRows) {
+		if errors.Is(err, sql.ErrNoRows) {
 			handler.jsonWorker.jsonErrorToHTTP(w, err, http.StatusBadRequest)
 			return
 		}

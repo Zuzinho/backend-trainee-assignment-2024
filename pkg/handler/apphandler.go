@@ -55,7 +55,7 @@ func (handler *AppHandler) GetUserBanner(w http.ResponseWriter, r *http.Request)
 			role,
 		)
 		if err != nil {
-			if errors.As(err, &sql.ErrNoRows) {
+			if errors.Is(err, sql.ErrNoRows) {
 				w.WriteHeader(http.StatusNotFound)
 				return
 			}
