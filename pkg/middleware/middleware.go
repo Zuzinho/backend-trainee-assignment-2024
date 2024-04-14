@@ -97,13 +97,13 @@ func (middle *Middleware) Logging(next http.Handler) http.Handler {
 
 func (middle *Middleware) RecoverPanic(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		/* defer func() {
+		defer func() {
 			if err := recover(); err != nil {
 				log.WithFields(log.Fields{
 					"Panic message": err,
 				}).Error("Catching panic...")
 			}
-		}()*/
+		}()
 
 		next.ServeHTTP(w, r)
 	})
